@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SQLKotin</string>
+    <string name="save">Save</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="id_title_string">Заголовок</string>
+    <string name="id_desc_hint">Описание</string>
+    <string name="no_elements">No Elements</string>
+</resources>
