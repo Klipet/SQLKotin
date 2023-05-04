@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import com.example.sqlkotin.R.id.edTitle
+import com.example.sqlkotin.R.id.fbAddImage
 import com.example.sqlkotin.R.id.tvTitle
 import com.example.sqlkotin.databinding.EditActivityBinding
 import com.example.sqlkotin.db.MyDbManager
@@ -62,8 +63,9 @@ class Edit_Activity : AppCompatActivity() {
         binding.fbAddImage.visibility = View.VISIBLE
     }
     fun onClickChooseImage(view: View) {
-        val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, imageReqestCode)
 
     }
@@ -82,6 +84,11 @@ class Edit_Activity : AppCompatActivity() {
             if (i.getStringExtra(MyIntentConstans.I_TITLE_KEY) != "null"){
                 binding.edTitle.setText(i.getStringExtra(MyIntentConstans.I_TITLE_KEY))
                 binding.edDescription.setText(i.getStringExtra(MyIntentConstans.I_DESK_KEY))
+                 if (i.getStringExtra(MyIntentConstans.I_URI_KEY) != "empty" ){
+                     binding.mainImageLayout.visibility = View.GONE
+                     binding.fbAddImage.visibility = View.VISIBLE
+                   //  binding.imMainImage.setImageURI(tempImageUri)
+                 }
             }
         }
     }
